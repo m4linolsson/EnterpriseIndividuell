@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/styles.css}">
+    <title>Members</title>
+
+</head>
+
+<body>
+
+<h1>Members in Ankeborg</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Phone number</th>
+        <th>Date of Birth</th>
+        <th>Address</th>
+        <th class="header-image"></th>
+
+    </tr>
+
+
+    </thead>
+    <tbody>
+    <tr th:each="member:${members}">
+
+        <td th:text="${member.getId()}"/>
+        <td th:text="${member.getFirstName()}"/>
+        <td th:text="${member.getLastName()}"/>
+        <td th:text="${member.getEmail()}"/>
+        <td th:text="${member.getPhone()}"/>
+        <td th:text="${member.getDateOfBirth()}"/>
+        <td>
+            <span th:text="${member.getAddress().getStreet()}"></span><br/>
+            <span th:text="${member.getAddress().getPostalCode()} +' '+${member.getAddress().getCity()}"></span>
+        </td>
+        <td><a th:href="@{/admin/deletememberbyid/{id}(id=${member.getId})}">
+            <button>Delete member</button></a>
+        </td>
+
+    </tr>
+    </tbody>
+
+</table>
+
+</body>
+</html>
