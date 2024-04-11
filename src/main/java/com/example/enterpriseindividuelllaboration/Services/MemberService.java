@@ -23,6 +23,8 @@ public class MemberService implements MemberServiceInterface {
         return memberRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Member", "id", id));
     }
 
+
+
     @Override
     public Member addNewMember(Member member) {
         return memberRepository.save(member);
